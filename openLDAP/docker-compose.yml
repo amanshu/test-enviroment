@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+  server:
+    build: osixia/openldap
+    networks:
+      - mirada-test
+      - ldap-net
+    environment:
+      LDAP_ADMIN_PASSWORD: nocturnalWorm30
+      LDAP_ORGANISATION: Mirada Test
+      LDAP_DOMAIN: mirada-medical.test
+    ports:
+      - '389:389'
+      - '636:636'
+    volumes:
+      - data:/var/lib/ldap
+      - config:/etc/ldap/slapd.d
+
+  admin:
+    image: osixia/phpldapadmin:0.7.2
+    networks:
+      - ldap-net
+    ports:
+      - 8100:80
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: server
+      PHPLDAPADMIN_HTTPS: 'false'
+    volumes:
+      - admin:/var/www/phpldapadmin
+    depends_on:
+      - server
+
+volumes:
+  data:
+  config:
+  admin:
+
+networks:
+  ldap-net:
+  mirada-test:
+    external: true
+    name: mirada-test
