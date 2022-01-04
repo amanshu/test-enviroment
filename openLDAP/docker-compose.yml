@@ -1,13 +1,14 @@
 version: '3.7'
 
 services:
+  # server container to run the actual ldap queries against, pulled from docker-hub
   server:
-    build: osixia/openldap
+    image: osixia/openldap:latest
     networks:
       - mirada-test
       - ldap-net
     environment:
-      LDAP_ADMIN_PASSWORD: nocturnalWorm30
+      LDAP_ADMIN_PASSWORD: nocturnalWorm30 # given this is a local cluster, leaving the password is acceptable for now.
       LDAP_ORGANISATION: Mirada Test
       LDAP_DOMAIN: mirada-medical.test
     ports:
@@ -17,12 +18,13 @@ services:
       - data:/var/lib/ldap
       - config:/etc/ldap/slapd.d
 
+  # admin container to allow frontend access to the ldap system, pulled from docker-hub
   admin:
-    image: osixia/phpldapadmin:0.7.2
+    image: osixia/phpldapadmin:latest
     networks:
       - ldap-net
     ports:
-      - 8100:80
+      - '8100:80'
     environment:
       PHPLDAPADMIN_LDAP_HOSTS: server
       PHPLDAPADMIN_HTTPS: 'false'
