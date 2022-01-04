@@ -7,7 +7,7 @@ This should be enough to run the relevant container.
 While networking is provided within each docker-compose cluster, in order to communicate between the clusters a bridge will need to be created.
 This will need to be created independently before running:
 
-    docker create network mirada-test
+    docker network create mirada-test
 
 ## Running
 Each folder contains a docker-compose.yml that can be used to start the cluster:
