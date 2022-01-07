@@ -1,0 +1,23 @@
+version: '3.7'
+
+volumes:
+  jenkins-home:
+  
+services:
+  controller:
+    build: .
+    networks:
+      - mirada-test
+      - jenkins-net
+    ports:
+      - '8300:8080'
+      - '50000:50000'
+    volumes:
+      - 'jenkins-home:/var/jenkins_home'
+    restart: unless-stopped
+
+networks:
+  jenkins-net:
+  mirada-test:
+    external: true
+    name: mirada-test
