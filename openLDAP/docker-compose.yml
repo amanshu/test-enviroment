@@ -3,7 +3,7 @@ version: '3.7'
 services:
   # server container to run the actual ldap queries against, pulled from docker-hub
   server:
-    image: osixia/openldap:latest
+    build: .
     networks:
       - mirada-test
       - ldap-net

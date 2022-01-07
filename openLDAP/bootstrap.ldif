@@ -1,0 +1,106 @@
+# Admin user, full rights, i.e. Infrastructure
+dn: cn=admin,dc=mirada-medical,dc=test
+changetype: add
+objectclass: inetOrgPerson
+cn: admin
+givenname: admin
+sn: Admin
+displayname: Admin User
+mail: admin@mirada-medical.test
+userpassword: admin
+
+# Delivery user, elevated rights for project admin, i.e. Delivery Leads/Product Leads/Architect
+dn: cn=delivery,dc=mirada-medical,dc=test
+changetype: add
+objectclass: inetOrgPerson
+cn: delivery
+givenname: delivery
+sn: Delivery
+displayname: Delivery
+mail: delivery@mirada-medical.test
+userpassword: delivery
+
+# Developer, the person who does the work i.e. Software Engineer/Analyst/Tester
+dn: cn=developer,dc=mirada-medical,dc=test
+changetype: add
+objectclass: inetOrgPerson
+cn: developer
+givenname: developer
+sn: Developer
+displayname: Developer
+mail: developer@mirada-medical.test
+userpassword: developer
+
+# User, read-only access i.e. QA
+dn: cn=user,dc=mirada-medical,dc=test
+changetype: add
+objectclass: inetOrgPerson
+cn: user
+givenname: user
+sn: User
+displayname: User
+mail: user@mirada-medical.test
+userpassword: user
+
+# Service account, where possible this should be used to connect machines/query ldap
+dn: cn=service,dc=mirada-medical,dc=test
+changetype: add
+objectclass: inetOrgPerson
+cn: service
+givenname: service
+sn: Service
+displayname: Service
+mail: service@mirada-medical.test
+userpassword: service
+
+# Root user group
+dn: ou=Users,dc=mirada-medical,dc=test
+changetype: add
+objectclass: organizationalUnit
+ou: Users
+
+# Root group group
+dn: ou=Groups,dc=mirada-medical,dc=test
+changetype: add
+objectclass: organizationalUnit
+ou: Groups
+
+# Admin group, admin user only
+dn: cn=Admins,ou=Groups,dc=mirada-medical,dc=test
+changetype: add
+cn: Admins
+objectclass: groupOfUniqueNames
+uniqueMember: cn=admin,dc=mirada-medical,dc=test
+
+# Leads group, admin and delivery users
+dn: cn=Leads,ou=Groups,dc=mirada-medical,dc=test
+changetype: add
+cn: Leads
+objectclass: groupOfUniqueNames
+uniqueMember: cn=admin,dc=mirada-medical,dc=test
+uniqueMember: cn=delivery,dc=mirada-medical,dc=test
+
+# Developer group, admin and developer users
+dn: cn=Developers,ou=Groups,dc=mirada-medical,dc=test
+changetype: add
+cn: Developers
+objectclass: groupOfUniqueNames
+uniqueMember: cn=admin,dc=mirada-medical,dc=test
+uniqueMember: cn=developer,dc=mirada-medical,dc=test
+
+# Users group, all users
+dn: cn=Users,ou=Groups,dc=mirada-medical,dc=test
+changetype: add
+cn: Users
+objectclass: groupOfUniqueNames
+uniqueMember: cn=admin,dc=mirada-medical,dc=test
+uniqueMember: cn=delivery,dc=mirada-medical,dc=test
+uniqueMember: cn=developer,dc=mirada-medical,dc=test
+uniqueMember: cn=user,dc=mirada-medical,dc=test
+
+# Service group for the service account, if necessary
+dn: cn=Services,ou=Groups,dc=mirada-medical,dc=test
+changetype: add
+cn: Services
+objectclass: groupOfUniqueNames
+uniqueMember: cn=service,dc=mirada-medical,dc=test
