@@ -14,10 +14,6 @@ EXPOSE 50000/tcp
 # groovy/ contains initialisation scripts for Jenkins
 COPY --chown=jenkins:jenkins groovy/* /usr/share/jenkins/ref/init.groovy.d/
 
-# Turn off the setup wizard on the grounds we'll be configuring separately
-ARG JAVA_OPTS
-ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false ${JAVA_OPTS:-}"
-
 # Install the plugins listed in Plugins
 COPY ${Plugins} /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
