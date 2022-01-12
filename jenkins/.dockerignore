@@ -1,0 +1,5 @@
+# Don't upload scm files in any form ever.
+.git
+.svn
+
+README.md
