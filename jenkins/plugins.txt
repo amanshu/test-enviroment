@@ -1,3 +1,4 @@
+adoptopenjdk:latest
 antisamy-markup-formatter:latest
 authorize-project:latest
 bitbucket:latest
