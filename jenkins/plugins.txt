@@ -9,6 +9,7 @@ config-file-provider:latest
 configuration-as-code:latest
 credentials-binding:latest
 dashboard-view:latest
+dependency-track:latest
 email-ext:latest
 extra-tool-installers:latest
 git:latest
