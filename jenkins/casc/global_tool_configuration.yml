@@ -1,0 +1,32 @@
+tool:
+  git:
+    installations:
+      - home: "git"
+        name: "Default"
+  # The main system downloads the Windows version from Nexus, since this is a Unix container we'll have to use the adoptium version
+  jdk:
+    installations:
+      - name: "JDK-11.0.13"
+        properties:
+          - installSource:
+              installers:
+                - adoptOpenJdkInstaller:
+                    id: "jdk-11.0.13+8"
+  maven:
+    installations:
+      - name: "Maven339"
+        properties:
+          - installSource:
+              installers:
+                - authenticatedzip:
+                    credentialsId: "domain-jenkins.master"
+                    subdir: "apache-maven-3.3.9"
+                    # The containers can't access DNS as they're not on the domain, so IPs will need to be used
+                    url: "http://10.0.0.83/repository/mcl-thirdparty-packaged/org/apache/maven/3.3.9/maven-3.3.9-bin.zip"
+  mavenGlobalConfig:
+    globalSettingsProvider:
+      mvn:
+        settingsConfigId: "global-maven-settings"
+    settingsProvider:
+      mvn:
+        settingsConfigId: "default-maven-settings"

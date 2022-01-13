@@ -1,0 +1,124 @@
+jenkins:
+  authorizationStrategy:
+    projectMatrix:
+      permissions:
+        - "GROUP:Agent/Build:Admins"
+        - "GROUP:Agent/Build:Developers"
+        - "GROUP:Agent/Build:Leads"
+        - "GROUP:Agent/Configure:Admins"
+        - "GROUP:Agent/Configure:Developers"
+        - "GROUP:Agent/Configure:Leads"
+        - "GROUP:Agent/Connect:Admins"
+        - "GROUP:Agent/Connect:Developers"
+        - "GROUP:Agent/Connect:Leads"
+        - "GROUP:Agent/Create:Admins"
+        - "GROUP:Agent/Create:Leads"
+        - "GROUP:Agent/Delete:Admins"
+        - "GROUP:Agent/Disconnect:Admins"
+        - "GROUP:Agent/Disconnect:Leads"
+        - "GROUP:Credentials/Create:Admins"
+        - "GROUP:Credentials/Create:Developers"
+        - "GROUP:Credentials/Create:Leads"
+        - "GROUP:Credentials/Delete:Admins"
+        - "GROUP:Credentials/Delete:Leads"
+        - "GROUP:Credentials/ManageDomains:Admins"
+        - "GROUP:Credentials/ManageDomains:Leads"
+        - "GROUP:Credentials/Update:Admins"
+        - "GROUP:Credentials/Update:Developers"
+        - "GROUP:Credentials/Update:Leads"
+        - "GROUP:Credentials/View:Admins"
+        - "GROUP:Credentials/View:Developers"
+        - "GROUP:Credentials/View:Leads"
+        - "GROUP:Job/Build:Admins"
+        - "GROUP:Job/Build:Developers"
+        - "GROUP:Job/Build:Leads"
+        - "GROUP:Job/Build:authenticated"
+        - "GROUP:Job/Cancel:Admins"
+        - "GROUP:Job/Cancel:Developers"
+        - "GROUP:Job/Cancel:Leads"
+        - "GROUP:Job/Configure:Admins"
+        - "GROUP:Job/Configure:Developers"
+        - "GROUP:Job/Configure:Leads"
+        - "GROUP:Job/Create:Admins"
+        - "GROUP:Job/Create:Developers"
+        - "GROUP:Job/Create:Leads"
+        - "GROUP:Job/Delete:Admins"
+        - "GROUP:Job/Discover:Admins"
+        - "GROUP:Job/Discover:Developers"
+        - "GROUP:Job/Discover:Leads"
+        - "GROUP:Job/Move:Admins"
+        - "GROUP:Job/Move:Developers"
+        - "GROUP:Job/Move:Leads"
+        - "GROUP:Job/Read:Admins"
+        - "GROUP:Job/Read:Developers"
+        - "GROUP:Job/Read:Leads"
+        - "GROUP:Job/Read:authenticated"
+        - "GROUP:Job/Workspace:Admins"
+        - "GROUP:Job/Workspace:Developers"
+        - "GROUP:Job/Workspace:Leads"
+        - "GROUP:Lockable Resources/Reserve:Admins"
+        - "GROUP:Lockable Resources/Unlock:Admins"
+        - "GROUP:Lockable Resources/View:Admins"
+        - "GROUP:Overall/Administer:Admins"
+        - "GROUP:Overall/Read:Admins"
+        - "GROUP:Overall/Read:Leads"
+        - "GROUP:Overall/Read:authenticated"
+        - "GROUP:Run/Delete:Admins"
+        - "GROUP:Run/Replay:Admins"
+        - "GROUP:Run/Replay:Leads"
+        - "GROUP:Run/Replay:authenticated"
+        - "GROUP:Run/Update:Admins"
+        - "GROUP:Run/Update:Developers"
+        - "GROUP:Run/Update:Leads"
+        - "GROUP:SCM/Tag:Admins"
+        - "GROUP:SCM/Tag:Developers"
+        - "GROUP:SCM/Tag:Leads"
+        - "GROUP:View/Configure:Admins"
+        - "GROUP:View/Configure:Developers"
+        - "GROUP:View/Configure:Leads"
+        - "GROUP:View/Create:Admins"
+        - "GROUP:View/Create:Developers"
+        - "GROUP:View/Create:Leads"
+        - "GROUP:View/Delete:Admins"
+        - "GROUP:View/Delete:Developers"
+        - "GROUP:View/Delete:Leads"
+        - "GROUP:View/Read:Admins"
+        - "GROUP:View/Read:Developers"
+        - "GROUP:View/Read:Leads"
+        - "GROUP:View/Read:authenticated"
+        - "USER:Job/Read:anonymous"
+        - "USER:Overall/Read:anonymous"
+        - "USER:View/Read:anonymous"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  securityRealm:
+    ldap:
+      configurations:
+        - groupSearchBase: "ou=Groups"
+          inhibitInferRootDN: false
+          # TODO: switch this to use the service account
+          managerDN: "cn=admin,dc=mirada-medical,dc=test"
+          managerPasswordSecret: "nocturnalWorm30"
+          rootDN: "dc=mirada-medical,dc=test"
+          server: "ldap://openldap_server_1"
+          userSearch: "cn={0}"
+      disableMailAddressResolver: false
+      disableRolePrefixing: true
+      groupIdStrategy: "caseInsensitive"
+      userIdStrategy: "caseInsensitive"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  envInject:
+    enableLoadingFromMaster: false
+    enablePermissions: false
+    hideInjectedVars: false
+  queueItemAuthenticator:
+    authenticators:
+      - global:
+          strategy: "triggeringUsersAuthorizationStrategy"
+  sSHD:
+    port: -1

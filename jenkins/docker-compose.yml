@@ -9,6 +9,8 @@ services:
     networks:
       - mirada-test
       - jenkins-net
+    environment:
+      - Version=1.0
     ports:
       - '8300:8080'
       - '50000:50000'
