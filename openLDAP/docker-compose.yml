@@ -5,7 +5,7 @@ services:
   server:
     build: .
     networks:
-      - mirada-test
+      - main
       - ldap-net
     environment:
       LDAP_ADMIN_PASSWORD: nocturnalWorm30 # given this is a local cluster, leaving the password is acceptable for now.
@@ -40,6 +40,6 @@ volumes:
 
 networks:
   ldap-net:
-  mirada-test:
+  main:
     external: true
-    name: mirada-test
+    name: main

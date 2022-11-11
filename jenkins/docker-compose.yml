@@ -7,7 +7,7 @@ services:
   controller:
     build: .
     networks:
-      - mirada-test
+      - main
       - jenkins-net
     environment:
       - Version=1.0
@@ -20,6 +20,6 @@ services:
 
 networks:
   jenkins-net:
-  mirada-test:
+  main:
     external: true
-    name: mirada-test
+    name: main
