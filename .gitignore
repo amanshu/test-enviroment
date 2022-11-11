@@ -1,2 +1,4 @@
 .idea/
 /dtrack/postgres-data/
+gitea/gitea/
+gitea/postgres/
