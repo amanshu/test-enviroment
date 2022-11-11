@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 
 services:
   postgres:
@@ -10,8 +10,8 @@ services:
       - POSTGRES_PASSWORD=gitea
       - POSTGRES_DB=gitea
     volumes:
-      - postgres-data:/var/lib/postgresql/data
-      restart: unless-stopped
+      - 'postgres-data:/var/lib/postgresql/data'
+    restart: unless-stopped
 
   gitea:
     image: gitea/gitea:latest
@@ -39,7 +39,6 @@ services:
 
 networks:
   gitea-net:
-    external: false
   main:
     external: true
     name: main

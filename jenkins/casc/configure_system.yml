@@ -36,7 +36,7 @@ unclassified:
   buildStepOperation:
     enabled: false
   location:
-    adminAddress: "admin@mirada-medical.test"
+    adminAddress: "admin@amanshu.test"
     url: "http://localhost:8300/"
   timestamper:
     allPipelines: false
