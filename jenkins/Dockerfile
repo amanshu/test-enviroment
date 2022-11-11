@@ -3,9 +3,9 @@ FROM jenkins/jenkins:lts
 ARG Plugins=plugins.txt
 ARG Configuration=casc
 
-LABEL name="Mirada Medical Jenkins Master build"
+LABEL name="Amanshu Jenkins Master build"
 LABEL version=${Version}
-LABEL description="The default setup of the Jenkins master for Mirada Medical"
+LABEL description="The default setup of the Jenkins master for Amanshu"
 
 # Define the required ports, these will need to be exposed with the -P flag at run time
 EXPOSE 8080/tcp

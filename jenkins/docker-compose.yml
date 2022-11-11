@@ -5,12 +5,14 @@ volumes:
   
 services:
   controller:
-    build: .
+    build:
+      context: .
+      args:
+        Version: 1.0
+        GIT_COMMIT: $(git rev-parse HEAD)
     networks:
       - main
       - jenkins-net
-    environment:
-      - Version=1.0
     ports:
       - '8300:8080'
       - '50000:50000'

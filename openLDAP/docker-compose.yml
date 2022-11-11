@@ -9,8 +9,8 @@ services:
       - ldap-net
     environment:
       LDAP_ADMIN_PASSWORD: nocturnalWorm30 # given this is a local cluster, leaving the password is acceptable for now.
-      LDAP_ORGANISATION: Mirada Test
-      LDAP_DOMAIN: mirada-medical.test
+      LDAP_ORGANISATION: Amanshu
+      LDAP_DOMAIN: amanshu.test
     ports:
       - '389:389'
       - '636:636'

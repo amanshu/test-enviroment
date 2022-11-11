@@ -7,5 +7,5 @@ Creates an OpenLDAP instance that can be populated with various levels of user.
 
 To access the php ldap interface:
 http://localhost:8100
-Login DN: cn=admin,dc=mirada-medical,dc=test
+Login DN: cn=admin,dc=amanshu,dc=test
 Password: nocturnalWorm30

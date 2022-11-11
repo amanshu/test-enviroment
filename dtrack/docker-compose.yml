@@ -52,10 +52,10 @@ services:
     # Note: the below settings are for the openLDAP configuration used in docker, not the active directory configuration used in production
       - ALPINE_LDAP_ENABLED=true
       - ALPINE_LDAP_SERVER_URL=ldap://openldap_server_1
-      - ALPINE_LDAP_BASEDN=dc=mirada-medical,dc=test
+      - ALPINE_LDAP_BASEDN=dc=amanshu,dc=test
       - ALPINE_LDAP_SECURITY_AUTH=simple
       # TODO: switch the bind user to the service account
-      - ALPINE_LDAP_BIND_USERNAME=cn=admin,dc=mirada-medical,dc=test
+      - ALPINE_LDAP_BIND_USERNAME=cn=admin,dc=amanshu,dc=test
       - ALPINE_LDAP_BIND_PASSWORD=nocturnalWorm30
       - ALPINE_LDAP_AUTH_USERNAME_FORMAT=%s
       - ALPINE_LDAP_ATTRIBUTE_NAME=cn
