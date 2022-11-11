@@ -14,7 +14,7 @@ EXPOSE 50000/tcp
 # Copy files into the container
 # CONFIGURATION contains the setup for Jenkins Configuration as Code
 # groovy/ contains initialisation scripts for Jenkins
-COPY ${Configuration}/ /var/jenkins_home/${Configuration}/
+COPY --chown=jenkins:jenkins ${Configuration}/ /var/jenkins_home/${Configuration}/
 COPY --chown=jenkins:jenkins groovy/* /usr/share/jenkins/ref/init.groovy.d/
 
 # Turn off the setup wizard on the grounds we'll be configuring separately
@@ -23,5 +23,5 @@ ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false ${JAVA_OPTS:-}"
 ENV CASC_JENKINS_CONFIG /var/jenkins_home/${Configuration}
 
 # Install the plugins listed in Plugins
-COPY ${Plugins} /usr/share/jenkins/ref/plugins.txt
-RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
+COPY --chown=jenkins:jenkins ${Plugins} /usr/share/jenkins/ref/plugins.txt
+RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
