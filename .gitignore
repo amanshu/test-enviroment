@@ -1,4 +1,9 @@
 .idea/
-/dtrack/postgres-data/
+
+dtrack/postgres-data/
+
 gitea/gitea/
 gitea/postgres/
+
+openLDAP/config/
+openLDAP/data/
