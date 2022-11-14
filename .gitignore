@@ -7,3 +7,6 @@ gitea/postgres/
 
 openLDAP/config/
 openLDAP/data/
+
+jenkins/data/
+jenkins/config/
