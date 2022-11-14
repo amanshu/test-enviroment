@@ -8,7 +8,7 @@ services:
     build:
       context: .
       args:
-        VERSION: 1.0
+        Version: 1.0
     networks:
       - main
       - jenkins-net
@@ -17,6 +17,7 @@ services:
       - '50000:50000'
     volumes:
       - './data:/var/jenkins_home'
+      - './config:/jenkins_setup'
     restart: unless-stopped
 
 networks:
