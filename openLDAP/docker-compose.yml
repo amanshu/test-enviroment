@@ -15,8 +15,8 @@ services:
       - '389:389'
       - '636:636'
     volumes:
-      - data:/var/lib/ldap
-      - config:/etc/ldap/slapd.d
+      - ./data:/var/lib/ldap
+      - ./config:/etc/ldap/slapd.d
 
   # admin container to allow frontend access to the ldap system, pulled from docker-hub
   admin:

@@ -4,8 +4,8 @@ ARG Plugins=plugins.txt
 ARG Configuration=casc
 
 LABEL name="Amanshu Jenkins Master build"
-LABEL version=${Version}
-LABEL description="The default setup of the Jenkins master for Amanshu"
+LABEL version=${VERSION}
+LABEL description="The default setup of the Jenkins master for Amanshu ${version}"
 
 # Define the required ports, these will need to be exposed with the -P flag at run time
 EXPOSE 8080/tcp
@@ -24,4 +24,4 @@ ENV CASC_JENKINS_CONFIG /var/jenkins_home/${Configuration}
 
 # Install the plugins listed in Plugins
 COPY --chown=jenkins:jenkins ${Plugins} /usr/share/jenkins/ref/plugins.txt
-RUN /jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
+RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
