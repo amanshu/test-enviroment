@@ -1,5 +1,5 @@
 # Admin user, full rights, i.e. Infrastructure
-dn: cn=admin,dc=amanshu,dc=test
+dn: cn=admin,dc=example,dc=org
 changetype: add
 objectclass: inetOrgPerson
 cn: admin
@@ -10,7 +10,7 @@ mail: admin@amanshu.test
 userpassword: admin
 
 # Delivery user, elevated rights for project admin, i.e. Delivery Leads/Product Leads/Architect
-dn: cn=delivery,dc=amanshu,dc=test
+dn: cn=delivery,dc=example,dc=org
 changetype: add
 objectclass: inetOrgPerson
 cn: delivery
@@ -21,7 +21,7 @@ mail: delivery@amanshu.test
 userpassword: delivery
 
 # Developer, the person who does the work i.e. Software Engineer/Analyst/Tester
-dn: cn=developer,dc=amanshu,dc=test
+dn: cn=developer,dc=example,dc=org
 changetype: add
 objectclass: inetOrgPerson
 cn: developer
@@ -32,7 +32,7 @@ mail: developer@amanshu.test
 userpassword: developer
 
 # User, read-only access i.e. QA
-dn: cn=user,dc=amanshu,dc=test
+dn: cn=user,dc=example,dc=org
 changetype: add
 objectclass: inetOrgPerson
 cn: user
@@ -43,7 +43,7 @@ mail: user@amanshu.test
 userpassword: user
 
 # Service account, where possible this should be used to connect machines/query ldap
-dn: cn=service,dc=amanshu,dc=test
+dn: cn=service,dc=example,dc=org
 changetype: add
 objectclass: inetOrgPerson
 cn: service
@@ -54,53 +54,53 @@ mail: service@amanshu.test
 userpassword: service
 
 # Root user group
-dn: ou=Users,dc=amanshu,dc=test
+dn: ou=Users,dc=example,dc=org
 changetype: add
 objectclass: organizationalUnit
 ou: Users
 
 # Root group group
-dn: ou=Groups,dc=amanshu,dc=test
+dn: ou=Groups,dc=example,dc=org
 changetype: add
 objectclass: organizationalUnit
 ou: Groups
 
 # Admin group, admin user only
-dn: cn=Admins,ou=Groups,dc=amanshu,dc=test
+dn: cn=Admins,ou=Groups,dc=example,dc=org
 changetype: add
 cn: Admins
 objectclass: groupOfUniqueNames
-uniqueMember: cn=admin,dc=amanshu,dc=test
+uniqueMember: cn=admin,dc=example,dc=org
 
 # Leads group, admin and delivery users
-dn: cn=Leads,ou=Groups,dc=amanshu,dc=test
+dn: cn=Leads,ou=Groups,dc=example,dc=org
 changetype: add
 cn: Leads
 objectclass: groupOfUniqueNames
-uniqueMember: cn=admin,dc=amanshu,dc=test
-uniqueMember: cn=delivery,dc=amanshu,dc=test
+uniqueMember: cn=admin,dc=example,dc=org
+uniqueMember: cn=delivery,dc=example,dc=org
 
 # Developer group, admin and developer users
-dn: cn=Developers,ou=Groups,dc=amanshu,dc=test
+dn: cn=Developers,ou=Groups,dc=example,dc=org
 changetype: add
 cn: Developers
 objectclass: groupOfUniqueNames
-uniqueMember: cn=admin,dc=amanshu,dc=test
-uniqueMember: cn=developer,dc=amanshu,dc=test
+uniqueMember: cn=admin,dc=example,dc=org
+uniqueMember: cn=developer,dc=example,dc=org
 
 # Users group, all users
-dn: cn=Users,ou=Groups,dc=amanshu,dc=test
+dn: cn=Users,ou=Groups,dc=example,dc=org
 changetype: add
 cn: Users
 objectclass: groupOfUniqueNames
-uniqueMember: cn=admin,dc=amanshu,dc=test
-uniqueMember: cn=delivery,dc=amanshu,dc=test
-uniqueMember: cn=developer,dc=amanshu,dc=test
-uniqueMember: cn=user,dc=amanshu,dc=test
+uniqueMember: cn=admin,dc=example,dc=org
+uniqueMember: cn=delivery,dc=example,dc=org
+uniqueMember: cn=developer,dc=example,dc=org
+uniqueMember: cn=user,dc=example,dc=org
 
 # Service group for the service account, if necessary
-dn: cn=Services,ou=Groups,dc=amanshu,dc=test
+dn: cn=Services,ou=Groups,dc=example,dc=org
 changetype: add
 cn: Services
 objectclass: groupOfUniqueNames
-uniqueMember: cn=service,dc=amanshu,dc=test
+uniqueMember: cn=service,dc=example,dc=org

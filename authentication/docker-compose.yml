@@ -1,0 +1,58 @@
+version: '3.7'
+
+services:
+  server:
+#    build: .
+    image: bitnami/openldap:latest
+    networks:
+      - auth
+    environment:
+      LDAP_ADMIN_USERNAME: service
+#      LDAP_ADMIN_PASSWORD_FILE:/adminPassword.txt
+      LDAP_ADMIN_PASSWORD: exampleAdmin30
+      LDAP_ROOT: dc=example,dc=org
+      LDAP_PORT_NUMBER: "389"
+      LDAP_CUSTOM_LDIF_DIR: /ldifs
+    ports:
+      - '389:1389'
+      - '636:1636'
+    volumes:
+      - data:/var/lib/ldap
+      - config:/etc/ldap/slapd.d
+      - ./ldifs/domain.ldif:/ldifs/domain.ldif
+
+
+  # admin container to allow frontend access to the ldap system, pulled from docker-hub
+  admin:
+    image: osixia/phpldapadmin:latest
+    labels:
+      - "proxyName=openldap"
+      - "traefik.enable=true"
+      - "traefik.http.routers.admin-openldap.entrypoints=web"
+      - "traefik.http.routers.admin-openldap.rule=PathPrefix(`/openldap`)"
+      - "traefik.http.middlewares.strip-openldap.stripprefix.prefixes=/openldap"
+      - "traefik.http.middlewares.strip-slash.stripprefix.prefixes=/"
+#      - "traefik.http.middlewares.strip-openldap.stripprefixregex.regex=openldap(\\/?)"
+      - "traefik.http.routers.admin-openldap.middlewares=strip-openldap,strip-slash"
+    networks:
+      - auth
+      - external
+    ports:
+      - '8100:80'
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: server
+      PHPLDAPADMIN_HTTPS: 'false'
+    volumes:
+      - admin:/var/www/phpldapadmin
+    depends_on:
+      - server
+
+volumes:
+  data:
+  config:
+  admin:
+
+networks:
+  auth:
+  external:
+    external: true
