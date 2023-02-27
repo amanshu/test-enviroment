@@ -51,12 +51,12 @@ services:
     # Optional LDAP Properties
     # Note: the below settings are for the openLDAP configuration used in docker, not the active directory configuration used in production
       - ALPINE_LDAP_ENABLED=true
-      - ALPINE_LDAP_SERVER_URL=ldap://openldap_server_1
-      - ALPINE_LDAP_BASEDN=dc=amanshu,dc=test
+      - ALPINE_LDAP_SERVER_URL=ldap://authentication-server-1
+      - ALPINE_LDAP_BASEDN=dc=example,dc=org
       - ALPINE_LDAP_SECURITY_AUTH=simple
       # TODO: switch the bind user to the service account
-      - ALPINE_LDAP_BIND_USERNAME=cn=admin,dc=amanshu,dc=test
-      - ALPINE_LDAP_BIND_PASSWORD=nocturnalWorm30
+      - ALPINE_LDAP_BIND_USERNAME=cn=admin,dc=example,dc=org
+      - ALPINE_LDAP_BIND_PASSWORD=lightMongoose56
       - ALPINE_LDAP_AUTH_USERNAME_FORMAT=%s
       - ALPINE_LDAP_ATTRIBUTE_NAME=cn
       - ALPINE_LDAP_ATTRIBUTE_MAIL=mail
@@ -133,4 +133,4 @@ networks:
   dtrack-net:
   main:
     external: true
-    name: main
+    name: external
