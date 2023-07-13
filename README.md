@@ -22,3 +22,4 @@ To stop the cluster run:
 
     docker-compose down
 
+line for test purposes
